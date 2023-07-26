@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.9'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '11'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.projectlombok:lombok:1.18.26' // 롬복을 위한 라이브러리
+    compileOnly 'org.projectlombok:lombok' // 롬복을 위한 라이브러리
+    runtimeOnly 'com.mysql:mysql-connector-j' // mysql을 사용하기 위한 라이브러리
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    implementation group: 'org.springframework.security', name: 'spring-security-test' // 스프링 시큐리티를 사용하기 위한 라이브러리
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1' // 로그인 토큰을 발급 하기 위한 라이브러리
+
+
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
